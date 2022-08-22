@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>todolist</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td class="topmenu">
+                    <button class="btn" onclick="showsidemenu()"><i class="fa fa-bars"></i></button> 
+                    <button class="btn" onclick="test()"><i class="fa fa-home"></i></button> 
+                    <input type="text" class="search" placeholder="Search..">
+                </td>
+                <td class="topmenu" id="right">
+                    <button class="btn" onclick="test()"><i class="fa fa-plus"></i></button> 
+                    <button class="btn" onclick="test()"><i class="fa fa-question"></i></button> 
+                    <button class="btn" onclick="test()"><i class="fa fa-bell"></i></button>
+                    
+                </td>
+                <td class="topmenu" id="right">
+                    <img class="pfp" src="imgs/img_avatar.png">
+                </td>
+            </tr>
+            <tr id = "secondrow">
+                <td class="sidemenu" id = "sidemenu">
+                    <button class="btnside"><i class="fa fa-inbox blueicon"></i> Inbox</button><br>
+                    <button class="btnside"><i class="fa fa-calendar greenicon"></i> Today</button><br>
+                    <button class="btnside"><i class="fa fa-calendar purpleicon"></i> Upcoming</button><br> 
+                    <button class="btnside"><i class="fa fa-filter yellowicon"></i> Filters</button><br>
+                    <button class="btnside" onclick="rotate('arrow0')"><i id="arrow0" class="fa fa-chevron-right grayicon"></i> Favourites</button>
+                    <div id="favourites"></div>
+                    <button class="btnside" onclick="rotate('arrow1')"><i id="arrow1" class="fa fa-chevron-right grayicon"></i> Projects</button>
+                    <div id="projects"></div>
+                </td>
+            </tr>
+        </table>
+    </body>
+    <script>
+        function rotate(id){
+            var i = document.getElementById(id);
+            if(i.getAttribute("class")=="fa fa-chevron-right fa-rotate-90 grayicon")
+                i.setAttribute("class","fa fa-chevron-right grayicon");
+            else
+                i.setAttribute("class","fa fa-chevron-right fa-rotate-90 grayicon");
+        }
+
+        function showsidemenu(){
+            var sidemenu = document.getElementById("sidemenu");
+            if(sidemenu != null)
+                sidemenu.remove();
+            else{
+                sidemenu = document.createElement("td");    //create sidemenu if it does not exists
+                sidemenu.setAttribute("class","sidemenu");
+                sidemenu.setAttribute("id", "sidemenu");
+
+
+                inbox = document.createElement("button");   //create button
+                inbox.setAttribute("class","btnside");
+
+                iinbox = document.createElement("i");   //create icon tag
+                iinbox.setAttribute("class", "fa fa-inbox blueicon");
+                
+                spanname = document.createElement("span");  //create span for text
+                spanname.innerText =" Inbox";
+
+                inbox.appendChild(iinbox);   
+                inbox.appendChild(spanname);
+
+                sidemenu.appendChild(inbox);
+
+
+                today = document.createElement("button");   //create button
+                today.setAttribute("class","btnside");
+
+                itoday = document.createElement("i");   //create icon tag
+                itoday.setAttribute("class", "fa fa-calendar greenicon");
+                
+                spanname = document.createElement("span");  //create span for text
+                spanname.innerText =" Today";
+
+                today.appendChild(itoday);   
+                today.appendChild(spanname);
+
+                sidemenu.appendChild(today);
+
+                
+
+
+
+
+                document.getElementById("secondrow").appendChild(sidemenu);
+            }
+        }
+    </script>
+</html>
