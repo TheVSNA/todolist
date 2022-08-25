@@ -5,17 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Add icon library -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="script.js"></script>
+        <script src="../script/script.js"></script>
     </head>
-    <body onload="addTodoElements()">
+    <body onload="getToday()">
         <table class="menu">
             <tr>
                 <td class="topmenu" id="left">
                     <button class="btn" onclick="showsidemenu()"><i class="fa fa-bars"></i></button> 
-                    <button class="btn" onclick="test()"><i class="fa fa-home"></i></button> 
-                    <input type="text" class="search" placeholder="Search..">
+                    <button class="btn" onclick="getToday()"><i class="fa fa-home"></i></button> 
+                    <input type="text" class="searchbar" placeholder="Search..">
                 </td>
                 <td class="topmenu" id="right">
                     <button class="btn" onclick="test()"><i class="fa fa-plus"></i></button> 
@@ -24,7 +24,7 @@
                     
                 </td>
                 <td class="topmenu" id="right">
-                    <img class="pfp" src="imgs/img_avatar.png">
+                    <img class="pfp" src="../imgs/img_avatar.png">
                 </td>
             </tr>
         </table>
@@ -35,6 +35,12 @@
                 </td>
                 <td id="todolist" class="todolist">
                     <h2 id="day">Today</h2>
+                    <div id = "todos">
+
+                    </div>
+                    <div id = "addbutton" class="addbutton">
+
+                    </div>
                 </td>
             </tr>
         </table>

@@ -18,7 +18,7 @@ body {
 }
 .btn:active {
     animation-name: changecolormain;
-  animation-duration: 0.5s;
+    animation-duration: 0.5s;
 }
 @keyframes changecolormain {    /*animation when the button is pressed*/
     0% {background-color:  rgb(21, 163, 56);}
@@ -27,7 +27,7 @@ body {
 }
 
 
-input[type=text] {  /*search bar*/
+input[type=text].searchbar {  /*search bar*/
     background-color: rgb(27, 216, 75);
     border: 2px solid;
     border-color: rgb(24, 192, 66);
@@ -37,7 +37,7 @@ input[type=text] {  /*search bar*/
     cursor: pointer;
     border-radius: 7px;
 }
-input[type=text]:focus {
+input[type=text]:focus.searchbar {
     background-color: rgb(27, 216, 75);
     border: 2px solid rgb(24, 192, 66);
     border-color: rgb(24, 192, 66);
@@ -49,7 +49,7 @@ input[type=text]:focus {
     outline: none;
 }
 
-::placeholder {
+.searchbar::placeholder {
     color: white;
     opacity: 1;
 }
@@ -149,6 +149,10 @@ body {
 .grayicon{
     color: gray;
 }
+.redicon{
+    color: red;
+}
+
 
 .rotate {
     -moz-transition: all .5s linear;
@@ -204,4 +208,84 @@ input[type=checkbox]:checked{
 
 .todotext {
     font-size: 30px;
+}
+.todotextform {
+    background-color: rgb(255, 255, 255);
+    padding-left: 10px;
+    margin-left: -5px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 7px;
+    border:1px solid black; 
+    width: 100%;
+    height: 100%; 
+    line-height: 200%;
+    resize: none;
+}
+
+#addbutton {
+    height: 20%;
+    padding: 20px;
+    text-align: left;
+}
+.addform {
+    height:100%;
+    width: 50%;
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.date {
+    border-radius: 7px;
+    height: 30px;
+    padding: 10px 10px 10px 0;
+    margin: 10px 10px 10px 0;
+}
+.group {
+    border-radius: 7px;
+    height: 30px;
+    padding: 10px 10px 10px 0;
+    margin: 10px 10px 10px 0;
+    padding-left: 10px;
+}
+
+.submit {
+    border-radius: 7px;
+    height: 50px;
+    width: 90px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(24, 192, 66);;
+    padding: 10px 10px 10px 0;
+    margin: 10px 0px 10px 0;
+    float: right;
+}
+.submit:hover {
+    background-color: rgb(21, 163, 56);
+}
+.submit:active {
+    animation-name: changecolormain;
+  animation-duration: 0.5s;
+}
+.spansubmit{
+    text-align: right;
+    width:50%;
+}
+.todotextform::placeholder{
+    color:black;
+}
+.group::placeholder{
+    color: black;
+}
+
+.btnaddtodo{
+    border: none;
+    font-size: 25px;
+    background-color: white;
+    width: 25%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
