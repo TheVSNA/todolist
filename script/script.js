@@ -33,7 +33,7 @@ function showGroups(){
        groups.forEach(group => {
             button = document.createElement("button");
             button.setAttribute("id",group["name"]);
-            button.setAttribute("class","btngroup");
+            button.setAttribute("class","btnside");
             button.setAttribute("onclick","showGroup('"+group["name"]+"')");
 
             i = document.createElement("i");
@@ -41,7 +41,7 @@ function showGroups(){
             i.setAttribute("style","color:"+group["color"]);
 
             span = document.createElement("span");
-            span.innerText=group["name"];
+            span.innerText=" "+group["name"];
             span.setAttribute("style","color:"+group["color"]);
 
             button.appendChild(i);
@@ -53,6 +53,11 @@ function showGroups(){
        addgroup.setAttribute("class","btngroup");
        addgroup.setAttribute("id","addgroupbutton");
        addgroup.setAttribute("onclick","showAddGroupForm()");
+
+       icon = document.createElement("i");
+       icon.setAttribute("class","fa fa-plus");
+
+       addgroup.appendChild(icon);
 
        spanbutton = document.createElement("span");
        spanbutton.innerText="Aggiungi gruppo";
@@ -69,6 +74,7 @@ function showAddGroupForm(){
     form = document.createElement("form");
     form.setAttribute("method","POST");
     form.setAttribute("action","/groups");
+    form.setAttribute("class","groupform");
     
     groupname = document.createElement("input");
     groupname.setAttribute("type","text");
@@ -76,6 +82,7 @@ function showAddGroupForm(){
     groupname.setAttribute("class","groupname");
     groupname.required = true;
     groupname.setAttribute("name","groupname");
+    groupname.setAttribute("placeholder","Inserisci il nome del gruppo");
 
 
     color = document.createElement("input");
@@ -85,17 +92,26 @@ function showAddGroupForm(){
     color.required = true;
     color.setAttribute("name","color");
 
-    form.appendChild(color);
-    
+    icon = document.createElement("select");
+    icon.setAttribute("name","icon");
+    icon.setAttribute("class","selecticon");
+    icon.setAttribute("style","font-family: 'Lato', 'Font Awesome 5 Free'; font-weight: 900;");
+    icon.innerHTML = "<option value='fa fa-address-book'>&#xf2b9;</option><option value='fa fa-address-card'>&#xf2bb;</option><option value='fa fa-angry'>&#xf556;</option><option value='fa fa-circle-down'>&#xf358;</option><option value='fa fa-circle-left'>&#xf359;</option><option value='fa fa-circle-right'>&#xf35a;</option><option value='fa fa-circle-up'>&#xf35b;</option><option value='fa fa-bell'>&#xf0f3; </option><option value='fa fa-bell-slash'>&#xf1f6; </option><option value='fa fa-bookmark'>&#xf02e; </option><option value='fa fa-building'>&#xf1ad; </option><option value='fa fa-calendar'>&#xf133; </option><option value='fa fa-calendar-alt'>&#xf073; </option><option value='fa fa-calendar-check'>&#xf274; </option><option value='fa fa-calendar-minus'>&#xf272;</option><option value='fa fa-calendar-plus'>&#xf271;</option><option value='fa fa-calendar-times'>&#xf273; </option><option value='fa fa-caret-square-down'>&#xf150;</option><option value='fa fa-caret-square-left'>&#xf191; </option><option value='fa fa-caret-square-right'>&#xf152;</option><option value='fa fa-caret-square-up'>&#xf151; -</option><option value='fa fa-chart-bar'>&#xf080; </option><option value='fa fa-check-circle'>&#xf058; </option><option value='fa fa-check-square'>&#xf14a; </option><option value='fa fa-circle'>&#xf111; </option><option value='fa fa-clipboard'>&#xf328; </option><option value='fa fa-clock'>&#xf017; </option><option value='fa fa-clone'>&#xf24d; </option><option value='fa fa-closed-captioning'>&#xf20a;</option><option value='fa fa-comment'>&#xf075; </option><option value='fa fa-comment-alt'>&#xf27a; </option><option value='fa fa-comment-dots'>&#xf4ad; </option><option value='fa fa-comments'>&#xf086;</option><option value='fa fa-compass'>&#xf14e;</option><option value='fa fa-fa fa-copy'>&#xf0c5; </option><option value='fa fa-copyright'>&#xf1f9; </option><option value='fa fa-credit-card'>&#xf09d;</option><option value='fa fa-dizzy'>&#xf567;</option><option value='fa fa-dot-circle'>&#xf192;</option><option value='fa fa-edit'>&#xf044; </option><option value='fa fa-envelope'>&#xf40e0; </option><option value='fa fa-envelope-open'>&#xf2b6; </option><option value='fa fa-eye'>&#xf06e; </option><option value='fa fa-eye-slash'>&#xf070; </option><option value='fa fa-file'>&#xf15b;</option><option value='fa fa-file-alt'>&#xf15c; </option><option value='fa fa-file-archive'>&#xf1c6;</option><option value='fa fa-file-audio'>&#xf1c7; </option><option value='fa fa-file-code'>&#xf1c9; </option><option value='fa fa-file-excel'>&#xf1c3;  </option><option value='fa fa-file-image'>&#xf1c5; </option><option value='fa fa-file-pdf'>&#xf1c1; </option><option value='fa fa-file-powerpoint'>&#xf1c4; </option><option value='fa fa-file-video'>&#xf1c8;</option><option value='fa fa-file-word'>&#xf1c2;</option><option value='fa fa-flag'>&#xf024;</option><option value='fa fa-flushed'>&#xf579;</option><option value='fa fa-folder'>&#xf07b;</option><option value='fa fa-folder-open'>&#xf07c;  </option><option value='fa fa-frown'>&#xf119; </option><option value='fa fa-frown-open'>&#xf57a; </option><option value='fa fa-futbol'>&#xf1e3;</option><option value='fa fa-gem'>&#xf3a5;</option><option value='fa fa-grimace'>&#xf57f; </option><option value='fa fa-grin'>&#xf580; </option><option value='fa fa-grin-alt'>&#xf581;</option><option value='fa fa-grin-beam'>&#xf582;</option><option value='fa fa-grin-beam-sweet'>&#xf583;  </option><option value='fa fa-grin-hearts'>&#xf584; </option><option value='fa fa-grin-squint'>&#xf585;</option><option value='fa fa-grin-squint-tears'>&#xf586; </option><option value='fa fa-grin-stars'>&#xf587; </option><option value='fa fa-grin-tears'>&#xf588; </option><option value='fa fa-grin-tongue'>&#xf589;</option><option value='fa fa-grin-tongue-squint'>&#xf58a; </option><option value='fa fa-grin-tongue-wink'>&#xf58b; </option><option value='fa fa-grin-wink'>&#xf58c;</option><option value='fa fa-hand-lizard'>&#xf258; </option><option value='fa fa-hand-paper'>&#xf256; </option><option value='fa fa-hand-peace'>&#xf25b; </option><option value='fa fa-hand-point-down'>&#xf0a7; </option><option value='fa fa-hand-point-left'>&#xf0a5; </option><option value='fa fa-hand-point-right'>&#xf0a4;</option>";
+
     form.appendChild(groupname);
+
+    form.appendChild(color);
+
+    form.appendChild(icon);
 
     submit = document.createElement("input");
     submit.setAttribute("type","submit");
     submit.setAttribute("value","Invia");
+    submit.setAttribute("class","submitside");
 
+    
     form.appendChild(submit);
 
-    /*todo aggiungi possibilità di sceglire l'icona del gruppo*/
     divproj.appendChild(form);
 
 
@@ -128,10 +144,18 @@ function showsidemenu(){
     children = document.querySelectorAll("#sidemenu button");
 
     if(children.length>0){
-        children.forEach(element => {
+        children.forEach(element => {   //remove all buttons
             element.remove();
         });
+        
+        divs = document.querySelectorAll("#sidemenu div");
+        
+        divs.forEach(element => {   //also remove favourites div and projects div
+           element.remove(); 
+        });
+        
         sidemenu.setAttribute("class","sidemenuhidden");
+
     }else{
         sidemenu.setAttribute("class","sidemenushow");
 

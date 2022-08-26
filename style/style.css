@@ -289,3 +289,58 @@ input[type=checkbox]:checked{
     padding: 0;
     text-align: left;
 }
+
+.btngroup{
+    border: none;
+    font-size: 25px;
+    background-color: rgb(216, 216, 216);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+.groupform{
+    border: 1px solid  rgb(24, 192, 66);
+    border-radius: 7px;
+    height: 180px;
+    position: relative;
+    background-color: white;
+}
+.groupname{
+    width: 90%;
+    box-sizing: border-box;
+    padding-left: 10px;
+    height: 35%;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    margin-right: 5%;
+}
+.color{
+    width: 30%;
+    height: 30%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+}
+.selecticon{
+    width: 15%;
+    height: 30%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    position: absolute;
+    font-size: 30px;
+}
+
+.submitside{
+    border-radius: 7px;
+    height: 30%;
+    width: 20%;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(24, 192, 66);;
+    
+    margin-right:5%;
+    margin-bottom: 5%;
+    float: right;
+}
