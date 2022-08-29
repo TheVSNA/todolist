@@ -186,7 +186,7 @@ input[type=checkbox] {
     cursor: pointer;
 }
 
-input[type=checkbox]:checked.redcheck {
+/*input[type=checkbox]:checked.redcheck {
     background-color: red;
 }
 
@@ -200,7 +200,7 @@ input[type=checkbox]:checked.bluecheck {
 
 input[type=checkbox]:checked.yellowcheck {
     background-color: yellow;
-}
+}*/
 
 input[type=checkbox]:checked{
     background-color: gray;
@@ -242,9 +242,9 @@ input[type=checkbox]:checked{
     padding: 10px 10px 10px 0;
     margin: 10px 10px 10px 0;
 }
-.group {
+.groupicon {
     border-radius: 7px;
-    height: 30px;
+    height: 53px;
     padding: 10px 10px 10px 0;
     margin: 10px 10px 10px 0;
     padding-left: 10px;

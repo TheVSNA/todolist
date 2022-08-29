@@ -15,6 +15,12 @@ function rotate(id){
             showGroups();
     }
 }
+function showFavourites(){
+    console.log("to be implemented");
+}
+function removeFavourites(){
+    console.log("to be implemented");
+}
 
 function removeGroups(){
     divproj = document.getElementById("projects");
@@ -67,6 +73,67 @@ function showGroups(){
     });
 }
 
+//function to show all todos of a group
+function showGroup(groupname){
+    console.log(groupname);
+    todelete = document.querySelectorAll("#todolist div");
+    todelete.forEach(element => {
+        element.remove();
+    });
+
+    div = document.createElement("div");
+    div.setAttribute("id","todos");
+    document.getElementById("todolist").appendChild(div);
+
+    fetch("/gettodos",{method:"GET"}).then((resp)=>resp.json()).then(function(data){
+        fetch("/groups",{method:"GET"}).then((resp2)=>resp2.json()).then(function(data2){
+            console.log("sono qui");
+            data["todos"].forEach(element => {
+                console.log(element["projectname"]==groupname);
+                if(element["projectname"]==groupname){
+                    var groupicon;
+                    data2["projects"].forEach(element2 => {
+                        if(element2["name"]==element["projectname"])
+                            groupicon=element2;
+                    });
+                    console.log(element["ischecked"]);
+                    console.log(element["text"]);
+                    console.log(element["id"]);
+                    console.log(element["date"]);
+                    console.log(groupicon["color"]);
+                    console.log(element["projectname"]);
+                    console.log(groupicon["icon"]);
+                    console.log("\n");
+                    addTodoElement(element["ischecked"],element["text"],element["id"],element["date"],groupicon["color"],element["projectname"],groupicon["icon"]);
+                }
+                
+            });
+
+            
+            todolist =  document.createElement("div");
+            todolist.setAttribute("id","addbutton");
+
+            button = document.createElement("button");
+            button.setAttribute("id","btnaddtodo");
+            button.setAttribute("class","btnaddtodo");
+            button.setAttribute("onclick","openaddform()");
+
+            span = document.createElement("span");
+            span.innerText=" Aggiungi un elemento";
+
+            i = document.createElement("i");
+            i.setAttribute("class","fa fa-plus");
+            button.appendChild(i);
+
+            button.appendChild(span)
+
+            todolist.appendChild(button);
+            document.getElementById("todolist").appendChild(todolist);
+            document.getElementById("day").innerText=groupname;
+        });
+    });
+}
+
 function showAddGroupForm(){
     divproj = document.getElementById("projects");
     document.getElementById("addgroupbutton").remove();
@@ -95,9 +162,18 @@ function showAddGroupForm(){
     icon = document.createElement("select");
     icon.setAttribute("name","icon");
     icon.setAttribute("class","selecticon");
+    icon.setAttribute("id","selecticon");
+    icon.setAttribute("onchange","fillhidden(this);");
     icon.setAttribute("style","font-family: 'Lato', 'Font Awesome 5 Free'; font-weight: 900;");
     icon.innerHTML = "<option value='fa fa-address-book'>&#xf2b9;</option><option value='fa fa-address-card'>&#xf2bb;</option><option value='fa fa-angry'>&#xf556;</option><option value='fa fa-circle-down'>&#xf358;</option><option value='fa fa-circle-left'>&#xf359;</option><option value='fa fa-circle-right'>&#xf35a;</option><option value='fa fa-circle-up'>&#xf35b;</option><option value='fa fa-bell'>&#xf0f3; </option><option value='fa fa-bell-slash'>&#xf1f6; </option><option value='fa fa-bookmark'>&#xf02e; </option><option value='fa fa-building'>&#xf1ad; </option><option value='fa fa-calendar'>&#xf133; </option><option value='fa fa-calendar-alt'>&#xf073; </option><option value='fa fa-calendar-check'>&#xf274; </option><option value='fa fa-calendar-minus'>&#xf272;</option><option value='fa fa-calendar-plus'>&#xf271;</option><option value='fa fa-calendar-times'>&#xf273; </option><option value='fa fa-caret-square-down'>&#xf150;</option><option value='fa fa-caret-square-left'>&#xf191; </option><option value='fa fa-caret-square-right'>&#xf152;</option><option value='fa fa-caret-square-up'>&#xf151; -</option><option value='fa fa-chart-bar'>&#xf080; </option><option value='fa fa-check-circle'>&#xf058; </option><option value='fa fa-check-square'>&#xf14a; </option><option value='fa fa-circle'>&#xf111; </option><option value='fa fa-clipboard'>&#xf328; </option><option value='fa fa-clock'>&#xf017; </option><option value='fa fa-clone'>&#xf24d; </option><option value='fa fa-closed-captioning'>&#xf20a;</option><option value='fa fa-comment'>&#xf075; </option><option value='fa fa-comment-alt'>&#xf27a; </option><option value='fa fa-comment-dots'>&#xf4ad; </option><option value='fa fa-comments'>&#xf086;</option><option value='fa fa-compass'>&#xf14e;</option><option value='fa fa-fa fa-copy'>&#xf0c5; </option><option value='fa fa-copyright'>&#xf1f9; </option><option value='fa fa-credit-card'>&#xf09d;</option><option value='fa fa-dizzy'>&#xf567;</option><option value='fa fa-dot-circle'>&#xf192;</option><option value='fa fa-edit'>&#xf044; </option><option value='fa fa-envelope'>&#xf40e0; </option><option value='fa fa-envelope-open'>&#xf2b6; </option><option value='fa fa-eye'>&#xf06e; </option><option value='fa fa-eye-slash'>&#xf070; </option><option value='fa fa-file'>&#xf15b;</option><option value='fa fa-file-alt'>&#xf15c; </option><option value='fa fa-file-archive'>&#xf1c6;</option><option value='fa fa-file-audio'>&#xf1c7; </option><option value='fa fa-file-code'>&#xf1c9; </option><option value='fa fa-file-excel'>&#xf1c3;  </option><option value='fa fa-file-image'>&#xf1c5; </option><option value='fa fa-file-pdf'>&#xf1c1; </option><option value='fa fa-file-powerpoint'>&#xf1c4; </option><option value='fa fa-file-video'>&#xf1c8;</option><option value='fa fa-file-word'>&#xf1c2;</option><option value='fa fa-flag'>&#xf024;</option><option value='fa fa-flushed'>&#xf579;</option><option value='fa fa-folder'>&#xf07b;</option><option value='fa fa-folder-open'>&#xf07c;  </option><option value='fa fa-frown'>&#xf119; </option><option value='fa fa-frown-open'>&#xf57a; </option><option value='fa fa-futbol'>&#xf1e3;</option><option value='fa fa-gem'>&#xf3a5;</option><option value='fa fa-grimace'>&#xf57f; </option><option value='fa fa-grin'>&#xf580; </option><option value='fa fa-grin-alt'>&#xf581;</option><option value='fa fa-grin-beam'>&#xf582;</option><option value='fa fa-grin-beam-sweet'>&#xf583;  </option><option value='fa fa-grin-hearts'>&#xf584; </option><option value='fa fa-grin-squint'>&#xf585;</option><option value='fa fa-grin-squint-tears'>&#xf586; </option><option value='fa fa-grin-stars'>&#xf587; </option><option value='fa fa-grin-tears'>&#xf588; </option><option value='fa fa-grin-tongue'>&#xf589;</option><option value='fa fa-grin-tongue-squint'>&#xf58a; </option><option value='fa fa-grin-tongue-wink'>&#xf58b; </option><option value='fa fa-grin-wink'>&#xf58c;</option><option value='fa fa-hand-lizard'>&#xf258; </option><option value='fa fa-hand-paper'>&#xf256; </option><option value='fa fa-hand-peace'>&#xf25b; </option><option value='fa fa-hand-point-down'>&#xf0a7; </option><option value='fa fa-hand-point-left'>&#xf0a5; </option><option value='fa fa-hand-point-right'>&#xf0a4;</option>";
 
+
+    hidden = document.createElement("input");
+    hidden.setAttribute("type","hidden");
+    hidden.setAttribute("id","iconcode");
+    hidden.setAttribute("name","iconcode");
+
+    form.appendChild(hidden);
     form.appendChild(groupname);
 
     form.appendChild(color);
@@ -115,6 +191,11 @@ function showAddGroupForm(){
     divproj.appendChild(form);
 
 
+}
+
+function fillhidden(sel){
+    document.getElementById("iconcode").setAttribute("value",sel.options[sel.selectedIndex].text);
+    //console.log(sel.options[sel.selectedIndex].text);
 }
 
 //add a button to a parent specifying its class, its text, its icon and the onclick action
@@ -188,14 +269,19 @@ function addTodoElements(){
 }
 
 //function to add a todo element to the main page
-function addTodoElement(ischecked, text,id, date, projectcolor, projectname){
+function addTodoElement(ischecked, text,id, date, projectcolor, projectname, projecticon){
     todolist =  document.getElementById("todos");
 
     checkbox = document.createElement("input");
     checkbox.setAttribute("type","checkbox");
-    checkbox.setAttribute("onclick","changeText('"+id+"')");
+    checkbox.setAttribute("onclick","changeText(this,'"+id+"','"+projectcolor+"')");
     checkbox.checked = ischecked;
     checkbox.setAttribute("class",projectcolor+"check");
+    if(ischecked)
+        checkbox.setAttribute("style","background-color:"+projectcolor);
+    else
+        checkbox.setAttribute("style","background-color:white");
+    
 
     if(ischecked)
         span=document.createElement("del");
@@ -245,27 +331,9 @@ function addTodoElement(ischecked, text,id, date, projectcolor, projectname){
     spanproject = document.createElement("span");
     spanproject.innerText = " "+projectname;
     iproj = document.createElement("i");   //create icon tag
-    switch(projectcolor){
-        case "green":{
-            iproj.setAttribute("class", "fa fa-user greenicon");
-            break;
-        }
-        case "yellow":{
-            iproj.setAttribute("class", "fa fa-user yellowicon");
-            break;
-        }
-        case "red":{
-            iproj.setAttribute("class", "fa fa-user redicon");
-            break;
-        }
-        case "blue":{
-            iproj.setAttribute("class", "fa fa-user blueicon");
-            break;
-        }
-        default:{
-            iproj.setAttribute("class", "fa fa-user");
-        }
-    }
+    iproj.setAttribute("class",projecticon);
+    iproj.setAttribute("style","color:"+projectcolor);
+    
     
     td13.appendChild(iproj);
 
@@ -284,8 +352,8 @@ function addTodoElement(ischecked, text,id, date, projectcolor, projectname){
 }
 
 //function used to change a text from deleted to normal when a checkbox is pressed
-function changeText(textid){
-    span = document.getElementById(+textid); //get old text
+function changeText(checkbox,textid,color){
+    span = document.getElementById(textid); //get old text
     parent = span.parentElement;    //get parent node
 
     ischecked = false;
@@ -293,9 +361,12 @@ function changeText(textid){
     if(span instanceof HTMLSpanElement){    //verify if old text is a span element
         newspan = document.createElement("del");    //create a del tag 
         ischecked=true;
+        checkbox.setAttribute("style","background-color:"+color);
+        
     }else{
         newspan = document.createElement("span");   //create span tag
         ischecked=false;
+        checkbox.setAttribute("style","background-color:white");
     }
 
     newspan.setAttribute("id",+textid);
@@ -310,31 +381,59 @@ function changeText(textid){
 
 }
 
+//function to show today's todo
 function getToday(){
+    todelete = document.querySelectorAll("#todolist div");
+    todelete.forEach(element => {
+        element.remove();
+    });
+
+    div = document.createElement("div");
+    div.setAttribute("id","todos");
+    document.getElementById("todolist").appendChild(div);
+
     fetch("/today",{method:"GET"}).then((resp)=>resp.json()).then(function(data){
-        var cont=0;
-        data["todos"].forEach(element => {
-            addTodoElement(element["ischecked"],element["text"],element["id"],element["date"],element["projectcolor"],element["projectname"]);
+        fetch("/groups",{method:"GET"}).then((resp2)=>resp2.json()).then(function(data2){
+            var cont=0;
+            data["todos"].forEach(element => {
+                var groupicon;
+                data2["projects"].forEach(element2 => {
+                    if(element2["name"]==element["projectname"])
+                        groupicon=element2;
+                });
+                /*console.log(element["ischecked"]);
+                console.log(element["text"]);
+                console.log(element["id"]);
+                console.log(element["date"]);
+                console.log(groupicon["color"]);
+                console.log(element["projectname"]);
+                console.log(groupicon["icon"]);
+                console.log("\n");*/
+                addTodoElement(element["ischecked"],element["text"],element["id"],element["date"],groupicon["color"],element["projectname"],groupicon["icon"]);
+            });
+
+            
+            todolist =  document.createElement("div");
+            todolist.setAttribute("id","addbutton");
+
+            button = document.createElement("button");
+            button.setAttribute("id","btnaddtodo");
+            button.setAttribute("class","btnaddtodo");
+            button.setAttribute("onclick","openaddform()");
+
+            span = document.createElement("span");
+            span.innerText=" Aggiungi un elemento";
+
+            i = document.createElement("i");
+            i.setAttribute("class","fa fa-plus");
+            button.appendChild(i);
+
+            button.appendChild(span)
+
+            todolist.appendChild(button);
+            document.getElementById("todolist").appendChild(todolist);
+            document.getElementById("day").innerText="Today";
         });
-
-
-        todolist =  document.getElementById("addbutton");
-
-        button = document.createElement("button");
-        button.setAttribute("id","btnaddtodo");
-        button.setAttribute("class","btnaddtodo");
-        button.setAttribute("onclick","openaddform()");
-
-        span = document.createElement("span");
-        span.innerText=" Aggiungi un elemento";
-
-        i = document.createElement("i");
-        i.setAttribute("class","fa fa-plus");
-        button.appendChild(i);
-
-        button.appendChild(span)
-
-        todolist.appendChild(button);
     });
 }
 
@@ -367,13 +466,22 @@ function openaddform(){
     date.setAttribute("class","date");
     date.setAttribute("name","date");
     
-    group = document.createElement("input");    //todo transform into select
-    group.setAttribute("type","text");
-    group.setAttribute("id","group");
-    group.setAttribute("class","group");
-    group.setAttribute("placeholder","Inserisci il gruppo")
+    group = document.createElement("select");
+    group.setAttribute("class","groupicon");
     group.setAttribute("name","group");
-    group.required = true;
+    group.setAttribute("id","group");
+    group.setAttribute("style","font-family: 'Lato', 'Font Awesome 5 Free'; font-weight: 900;");
+
+    fetch("/groups",{method:"GET"}).then((resp)=>resp.json()).then(function(data){
+        groups = data["projects"];
+       
+        groups.forEach(element => {
+            option = document.createElement("option");
+            option.setAttribute("value",element["name"]);
+            option.innerText = element["iconcode"]+" "+element["name"];
+            group.appendChild(option);
+        });
+    });
 
 
     /*span = document.createElement("span");

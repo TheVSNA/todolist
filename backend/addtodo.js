@@ -4,6 +4,10 @@ const router = express.Router();
 const fs = require('fs/promises');
 const path = require('node:path');
 
+//code for database usage
+//const mongoose = require("mongoose");
+//const Todo = require("./models/todo");
+
 router.use(express.json());
 router.use(express.urlencoded({extended: true}));
 
@@ -15,8 +19,13 @@ router.post("", async function(req,res){
     const data = await fs.readFile(path.join(__dirname,'todos.json'), { encoding: 'utf8' });
 
     todos=JSON.parse(data)["todos"];
+    console.log(todos.length);
+    console.log(todos[todos.length-1]);
+
+
+
     var newtodo = {
-        "id":todos[todos.length-1]+1,
+        "id":parseInt(todos[todos.length-1]["id"])+1,
         "ischecked":false,
         "text":text,
         "date":date,
@@ -35,6 +44,21 @@ router.post("", async function(req,res){
     });
 
     res.redirect("/main");
+
+    //code for database usage
+    /*var newest = Todo.find().sort({_id:-1}).limit(1);
+
+
+    let newtodo = new Todo({
+        id:newest.id+1,
+        ischecked:false,
+        text:text,
+        date:date,
+        projectcolor:"black",
+        projectname:group
+    });
+    await newtodo.save();
+    res.redirect("/main");*/
 });
 
 //modify ischecked status of a todo element
@@ -75,6 +99,13 @@ router.put("/:id",async function(req,res){
         if(err) throw err;
     });
     res.status(200);
+});
+
+router.get("",async function (req,res){
+    const data = await fs.readFile(path.join(__dirname,'todos.json'), { encoding: 'utf8' });
+    let todos = JSON.parse(data);
+    console.log(todos);
+    res.status(200).json(todos);
 });
 
 module.exports = router;

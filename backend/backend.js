@@ -4,7 +4,7 @@ var util = require("util");
 const path = require('node:path');
 
 const today = require('./today.js');
-const addtodo = require('./addtodo.js');
+const managetodo = require('./addtodo.js');
 const groups = require('./groups.js');
 
 app.use(express.json());
@@ -27,7 +27,8 @@ app.use("/main",function(req,res){
 });
 
 app.use('/today', today);
-app.use('/managetodo', addtodo);
+app.use('/managetodo', managetodo);
+app.use('/gettodos',managetodo);
 app.use('/groups',groups);
 
 module.exports = app;
