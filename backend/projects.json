@@ -1,1 +1,28 @@
-{"projects":[{"name":"test","icon":"fa fa-address-book","color":"#0ff065","iconcode":""},{"name":"aaa","icon":"fa fa-calendar-alt","color":"#ba4545","iconcode":""},{"name":"bbb","icon":"fa fa-calendar-plus","color":"#2719e6","iconcode":""},{"name":"ccc","icon":"fa fa-copyright","color":"#ece522","iconcode":""}]}
+{
+    "projects": [
+        {
+            "name": "test",
+            "icon": "fa fa-address-book",
+            "color": "#0ff065",
+            "iconcode": ""
+        },
+        {
+            "name": "aaa",
+            "icon": "fa fa-calendar-alt",
+            "color": "#ba4545",
+            "iconcode": ""
+        },
+        {
+            "name": "bbb",
+            "icon": "fa fa-calendar-plus",
+            "color": "#2719e6",
+            "iconcode": ""
+        },
+        {
+            "name": "ccc",
+            "icon": "fa fa-copyright",
+            "color": "#ece522",
+            "iconcode": ""
+        }
+    ]
+}
